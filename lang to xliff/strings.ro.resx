@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="button.cancel.text" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="button.convert.text" xml:space="preserve">
+    <value>Convertește</value>
+  </data>
+  <data name="filter.lang.desc" xml:space="preserve">
+    <value>Fișiere de limbă (*.lang)</value>
+  </data>
+  <data name="filter.xliff.desc" xml:space="preserve">
+    <value>Fișiere de limbă (*.xliff)</value>
+  </data>
+  <data name="main.file.open" xml:space="preserve">
+    <value>Deschide fișiere</value>
+  </data>
+  <data name="main.input.label" xml:space="preserve">
+    <value>Input:</value>
+  </data>
+  <data name="main.label.nopath" xml:space="preserve">
+    <value>Niciun fișier selectat</value>
+  </data>
+  <data name="main.output.label" xml:space="preserve">
+    <value>Output:</value>
+  </data>
+  <data name="main.text.notext" xml:space="preserve">
+    <value>ieșire jurnal...</value>
+  </data>
+  <data name="main.toolbar.file" xml:space="preserve">
+    <value>Fișier</value>
+  </data>
+  <data name="main.toolbar.lang" xml:space="preserve">
+    <value>Limbă</value>
+  </data>
+  <data name="main.toolbar.mode" xml:space="preserve">
+    <value>Mod curent: {0}</value>
+    <comment>{0} = current conversion mode</comment>
+  </data>
+  <data name="main.window.title" xml:space="preserve">
+    <value>Convertor de la .lang la .xliff</value>
+    <comment>do not translate .lang and .xliff</comment>
+  </data>
+  <data name="mode.lang.xliff" xml:space="preserve">
+    <value>lang la xliff</value>
+  </data>
+  <data name="popup.convdone.desc" xml:space="preserve">
+    <value>Conversie completată</value>
+  </data>
+  <data name="popup.convstart.desc" xml:space="preserve">
+    <value>Ești sigur că vrei să începi conversia?</value>
+  </data>
+  <data name="popup.convstart.title" xml:space="preserve">
+    <value>Gata de conversie</value>
+  </data>
+  <data name="popup.error.title" xml:space="preserve">
+    <value>Eroare</value>
+    <comment>generic error popup title</comment>
+  </data>
+  <data name="popup.nofile.desc" xml:space="preserve">
+    <value>Fișierul nu a fost selectat!</value>
+  </data>
+  <data name="popup.nofile.title" xml:space="preserve">
+    <value>Niciun fișier selectat</value>
+  </data>
+  <data name="popup.nofileselect.desc" xml:space="preserve">
+    <value>Niciun fișier selectat. Le selectați acum?</value>
+  </data>
+  <data name="popup.opruns.desc" xml:space="preserve">
+    <value>Procesul rulează. Vrei să-l oprești? Notă: vei pierde tot progresul nesalvat</value>
+  </data>
+  <data name="popup.opruns.title" xml:space="preserve">
+    <value>Anulezi procesul?</value>
+  </data>
+  <data name="popup.warn.title" xml:space="preserve">
+    <value>Atenție</value>
+    <comment>generic warn popup title</comment>
+  </data>
+  <data name="text.cancel" xml:space="preserve">
+    <value>Anulată</value>
+  </data>
+  <data name="text.desc.lang" xml:space="preserve">
+    <value>{0} are {1} linii de tradus</value>
+    <comment>{0} = file name, {1} = translation count</comment>
+  </data>
+  <data name="text.desc.length1" xml:space="preserve">
+    <value>Lungime input: {0}</value>
+    <comment>{0} = file length (bytes)</comment>
+  </data>
+  <data name="text.desc.length2" xml:space="preserve">
+    <value>Lungime oututput: {0}</value>
+    <comment>{0} = file length (bytes)</comment>
+  </data>
+  <data name="text.desc.xliff" xml:space="preserve">
+    <value>{0} are {1} linii de tradus din care {2} traduse și {3} netraduse</value>
+    <comment>{0} = file name, {1} = translation count, {2} = strings translated, {3} = strings not translated</comment>
+  </data>
+  <data name="text.load1" xml:space="preserve">
+    <value>Se încarcă fișierul 1...</value>
+  </data>
+  <data name="text.load2" xml:space="preserve">
+    <value>Se încarcă fișierul 2...</value>
+  </data>
+  <data name="text.progress" xml:space="preserve">
+    <value>{0} / {1}</value>
+    <comment>string used to show diff between done strings and all strings</comment>
+  </data>
+  <data name="text.ready" xml:space="preserve">
+    <value>Pregătit</value>
+  </data>
+  <data name="text.sel1" xml:space="preserve">
+    <value>Selectează Input...</value>
+  </data>
+  <data name="text.sel1.title" xml:space="preserve">
+    <value>Deschide fișierul input...</value>
+  </data>
+  <data name="text.sel2" xml:space="preserve">
+    <value>Selectează Output...</value>
+  </data>
+  <data name="text.sel2.title" xml:space="preserve">
+    <value>Deschide fișierul output...</value>
+  </data>
+</root>
