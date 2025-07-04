@@ -1,5 +1,4 @@
-﻿using lang_to_xliff;
-using System;
+﻿using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
@@ -14,30 +13,94 @@ namespace format_converter
 {
     public partial class Form1 : Form
     {
-        string file1 = "", file2 = "", saveloc;
+        string file1 = "", fpath1, fpath2, LangFile = "AvailableLangs.txt", SelLang = "en";
         int strcount1 = 0, strcount2 = 0, trcount2 = 0, utrcount2 = 0;
         XmlDocument xliff = new XmlDocument();
+        lang_to_xliff LtX = new lang_to_xliff();
         BackgroundWorker backgroundWorker1 = new BackgroundWorker();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (File.Exists(LangFile))
+            {
+                StreamReader langs = new StreamReader(LangFile);
+                string line = langs.ReadLine();
+                while (line != null)
+                {
+                    if (line.Contains("#SelectedLang:")) SelLang = line.Substring(line.IndexOf(':') + 1);
+                    else if (line[0] != '#')
+                    {
+                        ToolStripMenuItem lang = new ToolStripMenuItem { Text = line.Substring(0, line.IndexOf(';')), Tag = (string)line.Substring(line.IndexOf(';') + 1) };
+                        languageToolStripMenuItem.DropDownItems.Add(lang);
+                        lang.Click += Lang_Click;
+                        if (lang.Tag.ToString() == SelLang) lang.Checked = true;
+                    }
+                    line = langs.ReadLine();
+                }
+                langs.Close();
+            }
+            if (SelLang == "en") englishToolStripMenuItem.Checked = true;
+            LoadLang();
+        }
+
+        private void Localize(Control item, ToolStripItem itm2)
+        {
+            string t;
+            if (item != null)
+            {
+                if (item.Tag != null)
+                {
+                    t = strings.ResourceManager.GetString((string)item.Tag);
+                    if (t != null) if (t.Length > 0)
+                        item.Text = t;
+                }
+                if (item.HasChildren) foreach (Control child in (item).Controls) Localize(child, null);
+                if (item.GetType() == typeof(MenuStrip)) foreach (ToolStripItem tool in ((MenuStrip)item).Items) Localize(null, tool);
+            }
+            else if (itm2 != null)
+            {
+                if (itm2.Tag != null)
+                {
+                    t = strings.ResourceManager.GetString((string)itm2.Tag);
+                    if (t!=null) if (t.Length > 0)
+                        itm2.Text = t;
+                }
+                if (itm2.GetType() == typeof(ToolStripMenuItem)) foreach (ToolStripItem tool in ((ToolStripMenuItem)itm2).DropDownItems) Localize(null, tool);
+            }
+        }
+
+        private void LoadLang()
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(SelLang);
+            Localize(this, null);
+            /*toolStripStatusLabel1.Text = format_converter.strings.text_ready;
+            fileToolStripMenuItem.Text = format_converter.strings.main_toolbar_file;
+            openFilesToolStripMenuItem.Text = format_converter.strings.main_file_open;*/
+            currentModeToolStripMenuItem.Text = string.Format(format_converter.strings.main_toolbar_mode, format_converter.strings.mode_lang_xliff);
+            //languageToolStripMenuItem.Text = format_converter.strings.main_toolbar_lang;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (file1 != "" && file2 != "") {
-                button1.Text = lang_to_xliff.strings.button_cancel_text;
-                openFilesToolStripMenuItem.Enabled = false;
-                button1.Click += BTN_Cancel;
-                if(!backgroundWorker1.IsBusy)
-                backgroundWorker1.RunWorkerAsync();
+            if (file1 != "" && xliff.OuterXml != "") {
+                if (!backgroundWorker1.IsBusy) if (MessageBox.Show(format_converter.strings.popup_convstart_desc, format_converter.strings.popup_convstart_title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        button1.Text = format_converter.strings.button_cancel_text;
+                        openFilesToolStripMenuItem.Enabled = false;
+                        button1.Click += BTN_Cancel;
+                        toolStripStatusLabel1.Text = format_converter.strings.text_noprogress;
+                        toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
+                        toolStripProgressBar1.Value = 100;
+                        backgroundWorker1.RunWorkerAsync();
+                    }
             }
-            else if (MessageBox.Show(lang_to_xliff.strings.popup_nofileselect_desc, lang_to_xliff.strings.popup_nofile_title, MessageBoxButtons.YesNo) == DialogResult.Yes) LoadFiles();
+            else if (MessageBox.Show(format_converter.strings.popup_nofileselect_desc, format_converter.strings.popup_nofile_title, MessageBoxButtons.YesNo) == DialogResult.Yes) LtX.LoadFiles();
         }
 
         private void BTN_Cancel(object sender, EventArgs e)
         {
-            if (MessageBox.Show(lang_to_xliff.strings.popup_opruns_desc, lang_to_xliff.strings.popup_opruns_title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(string.Format(format_converter.strings.popup_opruns_desc, Environment.NewLine), format_converter.strings.popup_opruns_title, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 backgroundWorker1.CancelAsync();
-                button1.Text = lang_to_xliff.strings.button_convert_text;
-                openFilesToolStripMenuItem.Enabled = false;
-                button1.Click += button1_Click;
             }
         }
 
@@ -45,6 +108,7 @@ namespace format_converter
         {
             InitializeComponent();
             InitializeBackgroundWorker();
+            InitializeExtension();
         }
 
         void InitializeBackgroundWorker()
@@ -59,11 +123,31 @@ namespace format_converter
             backgroundWorker1.WorkerSupportsCancellation = true;
         }
 
-        void cancelAsyncButton_Click(object sender,
-        EventArgs e)
+        private void InitializeExtension()
         {
-            // Cancel the asynchronous operation.
-            backgroundWorker1.CancelAsync();
+            LtX.SendDet += LtX_SendDetails;
+            LtX.SendData += LtX_SendData;
+        }
+
+        private void LtX_SendData(object sender, EventArgs e)
+        {
+            file1 = LtX.file1;
+            fpath1 = LtX.fpath1;
+            fpath2 = LtX.fpath2;
+            xliff = LtX.xliff;
+            strcount1 = LtX.strcount1;
+            strcount2 = LtX.strcount2;
+        }
+
+        private void LtX_SendDetails(object sender, EventArgs e)
+        {
+            if (LtX.ClrBigText) if (textBox1.Text == format_converter.strings.main_text_notext) textBox1.Clear();
+            if (LtX.TextToSend != null) toolStripStatusLabel1.Text = ((lang_to_xliff)sender).TextToSend;
+            if (LtX.BigText != null) textBox1.AppendText(((lang_to_xliff)sender).BigText);
+            if (LtX.Label3 != null) label3.Text = ((lang_to_xliff)sender).Label3;
+            if (LtX.Label4 != null) label4.Text = ((lang_to_xliff)sender).Label4;
+            if (LtX.ValToSend != -1) toolStripProgressBar1.Value = LtX.ValToSend;
+            toolStripProgressBar1.Style = LtX.StyleToSend;
         }
 
         void backgroundWorker1_DoWork(object sender,
@@ -71,53 +155,47 @@ namespace format_converter
         {
             // Get the BackgroundWorker that raised this event.
             BackgroundWorker worker = sender as BackgroundWorker;
-
             // Assign the result of the computation
             // to the Result property of the DoWorkEventArgs
             // object. This is will be available to the 
             // RunWorkerCompleted eventhandler.
-            e.Result = ConvertFiles(worker, e);
+            LtX.GetFiles(xliff, file1, fpath2);
+            e.Result = LtX.ConvertFiles(worker, e);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void invertModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang_to_xliff.Properties.Settings.Default.Lang);
-            Localize(this);
-            DumbLocalize();
+            LtX.GetFiles(xliff, file1, fpath2);
         }
 
-        private void Localize(Control item)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string t;
-            if (item.Tag != null)
+            if (File.Exists(LangFile))
             {
-                t = strings.ResourceManager.GetString((string)item.Tag);
-                if (t.Length > 0)
-                    item.Text = t;
+                StreamReader s = new StreamReader(LangFile);
+                string[] file = File.ReadAllLines(LangFile);
+                string lang = s.ReadLine();
+                s.Close();
+                lang = lang.Substring(0, lang.IndexOf(':') + 1) + SelLang;
+                file[0] = lang;
+                File.WriteAllLines(LangFile, file);
             }
-            if (item.HasChildren) foreach (Control child in item.Controls) Localize(child);
-        }
-        private void DumbLocalize()
-        {
-            toolStripStatusLabel1.Text = lang_to_xliff.strings.text_ready;
-            fileToolStripMenuItem.Text = lang_to_xliff.strings.main_toolbar_file;
-            openFilesToolStripMenuItem.Text = lang_to_xliff.strings.main_file_open;
-            currentModeToolStripMenuItem.Text = string.Format(lang_to_xliff.strings.main_toolbar_mode, lang_to_xliff.strings.mode_lang_xliff);
-            languageToolStripMenuItem.Text = lang_to_xliff.strings.main_toolbar_lang;
         }
 
-        private void românăToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Lang_Click(object sender, EventArgs e)
         {
-            lang_to_xliff.Properties.Settings.Default.Lang = "ro";
-            lang_to_xliff.Properties.Settings.Default.Save();
-            Form1_Load(this, e);
-        }
-
-        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            lang_to_xliff.Properties.Settings.Default.Lang = "en";
-            lang_to_xliff.Properties.Settings.Default.Save();
-            Form1_Load(this, e);
+            SelLang = ((ToolStripMenuItem)sender).Tag.ToString();
+            foreach (ToolStripMenuItem itm in ((ToolStripMenuItem)sender).GetCurrentParent().Items) itm.Checked = false;
+            if (Directory.Exists(SelLang))
+            {
+                ((ToolStripMenuItem)sender).Checked = true;
+            }
+            else
+            {
+                SelLang = "en";
+                englishToolStripMenuItem.Checked = true;
+            }
+            LoadLang();
         }
 
         void backgroundWorker1_RunWorkerCompleted(
@@ -126,7 +204,7 @@ namespace format_converter
             // First, handle the case where an exception was thrown.
             if (e.Error != null)
             {
-                _ = MessageBox.Show(lang_to_xliff.strings.popup_error_title, e.Error.Message);
+                _ = MessageBox.Show(e.Error.Message, format_converter.strings.popup_error_title);
             }
             else if (e.Cancelled)
             {
@@ -137,195 +215,37 @@ namespace format_converter
                 // flag may not have been set, even though
                 // CancelAsync was called.
                 toolStripProgressBar1.Value = 0;
-                toolStripStatusLabel1.Text = lang_to_xliff.strings.text_cancel;
+                toolStripStatusLabel1.Text = format_converter.strings.text_cancel;
             }
             else
             {
                 // Finally, handle the case where the operation 
                 // succeeded.
-                MessageBox.Show(lang_to_xliff.strings.popup_convdone_desc);
+                MessageBox.Show(format_converter.strings.popup_convdone_desc);
+                textBox1.AppendText(string.Format(format_converter.strings.text_done, e.Result.ToString()));
             }
-
-            // Enable the UpDown control.
-            fileToolStripMenuItem.Enabled = true;
+            //set stuff for conversion
+            button1.Text = format_converter.strings.button_convert_text;
+            openFilesToolStripMenuItem.Enabled = true;
+            button1.Click += button1_Click;
         }
 
         void backgroundWorker1_ProgressChanged(object sender,
         ProgressChangedEventArgs e)
         {
+            toolStripProgressBar1.Style = ProgressBarStyle.Blocks;
             int prog = (int)((float)e.ProgressPercentage / strcount1 * 100);
             int val2 = strcount1;
             if (prog > 100 && strcount2 > strcount1) { prog = (int)((float)e.ProgressPercentage / strcount2 * 100); val2 = strcount2; }
-            toolStripProgressBar1.Value = prog;
-            toolStripStatusLabel1.Text = string.Format(lang_to_xliff.strings.text_progress, e.ProgressPercentage.ToString(), val2.ToString());
+            if (prog >= toolStripProgressBar1.Minimum && prog <= toolStripProgressBar1.Maximum)toolStripProgressBar1.Value = prog;
+            toolStripStatusLabel1.Text = string.Format(format_converter.strings.text_progress, e.ProgressPercentage.ToString(), val2.ToString());
         }
 
-        private void LoadFiles()
-        {
-            //file1 = ""; file2 = "";
-            strcount1 = 0; strcount2 = 0; trcount2 = 0; utrcount2 = 0;
-            string line1 = "";
-            string[] details;
-            toolStripStatusLabel1.Text = lang_to_xliff.strings.text_sel1;
-            OpenFileDialog fdiag = new OpenFileDialog
-            {
-                Title = lang_to_xliff.strings.text_sel1_title,
-                Filter = lang_to_xliff.strings.filter_lang_desc + "|*.lang",
-                InitialDirectory = "%homedir%",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };
-            StreamReader S;
-            StringBuilder P;
-            if (fdiag.ShowDialog() == DialogResult.OK)
-            {
-                toolStripStatusLabel1.Text = lang_to_xliff.strings.text_load1;
-                toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
-                toolStripProgressBar1.Value = 100;
-                S = new StreamReader(fdiag.FileName);
-                P = new StringBuilder(file1);
-                line1 = S.ReadLine();
-                while (line1 != null)
-                {
-                    P.AppendLine(line1);
-                    if (line1.Length > 0) if (line1[0] != '#') strcount1++;
-                    line1 = S.ReadLine();
-                }
-                file1 = P.ToString();
-                toolStripProgressBar1.Style = ProgressBarStyle.Blocks;
-                toolStripProgressBar1.Value = 50;
-                label3.Text = fdiag.FileName;
-                if(textBox1.Text == lang_to_xliff.strings.main_text_notext)textBox1.Clear();
-                details = new string[] { fdiag.FileName, Convert.ToString(strcount1) };
-                textBox1.AppendText(string.Format(lang_to_xliff.strings.text_desc_lang, details) + Environment.NewLine);
-                toolStripStatusLabel1.Text = lang_to_xliff.strings.text_sel2;
-                fdiag.Title = lang_to_xliff.strings.text_sel2_title;
-                fdiag.Filter = lang_to_xliff.strings.filter_xliff_desc + "| *.xliff";
-                if (fdiag.ShowDialog() == DialogResult.OK)
-                {
-                    toolStripStatusLabel1.Text = lang_to_xliff.strings.text_load2;
-                    toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
-                    toolStripProgressBar1.Value = 100;
-                    saveloc = fdiag.FileName;
-                    S = new StreamReader(fdiag.FileName);
-                    P = new StringBuilder(file2);
-                    line1 = S.ReadLine();
-                    while (line1 != null)
-                    {
-                        P.AppendLine(line1);
-                        if (line1.IndexOf("resname") != -1) strcount2++;
-                        else if (line1.IndexOf("state=\"final\"") != -1 || line1.IndexOf("state=\"translated\"") != -1 || line1.IndexOf("state=\"needs - review - translation\"") != -1) trcount2++;
-                        else if (line1.IndexOf("needs-translation") != -1) utrcount2++;
-                        line1 = S.ReadLine();
-                    }
-                    xliff.Load(fdiag.FileName);
-                    file2 = P.ToString();
-                    label4.Text = fdiag.FileName;
-                    toolStripProgressBar1.Style = ProgressBarStyle.Blocks;
-                    details = new string[] { fdiag.FileName, Convert.ToString(strcount2), Convert.ToString(trcount2), Convert.ToString(utrcount2) };
-                    textBox1.AppendText(string.Format(lang_to_xliff.strings.text_desc_xliff, details) + Environment.NewLine);
-                }
-                else MessageBox.Show(lang_to_xliff.strings.popup_nofile_desc, lang_to_xliff.strings.popup_warn_title);
-                toolStripStatusLabel1.Text = lang_to_xliff.strings.text_ready;
-                toolStripProgressBar1.Value = 0;
-                textBox1.AppendText(string.Format(lang_to_xliff.strings.text_desc_length1, Convert.ToString(file1.Length)) + Environment.NewLine);
-                textBox1.AppendText(string.Format(lang_to_xliff.strings.text_desc_length2, Convert.ToString(file2.Length)) + Environment.NewLine);
-            }
-            else MessageBox.Show(lang_to_xliff.strings.popup_nofile_desc, lang_to_xliff.strings.popup_warn_title);
-            toolStripStatusLabel1.Text = lang_to_xliff.strings.text_ready;
-        }
+        
+
         private void openFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadFiles(); 
+            LtX.LoadFiles(); 
         }
-
-        private int ConvertFiles(BackgroundWorker worker, DoWorkEventArgs e)
-        {
-            string line1, line11, line12;
-            int loc1 = 0, tloc = 0, tms = 0;
-            long loc2 = 0;
-            StringReader fconvert1 = new StringReader(file1);
-            XmlNode newTransl, transl;
-            XmlNodeList nodes = xliff.GetElementsByTagName("trans-unit"), nodes2;
-            nodes2 = nodes;
-            //textBox1.AppendText(nodes.Count.ToString() + " entries");
-            if (MessageBox.Show(lang_to_xliff.strings.popup_convstart_desc, lang_to_xliff.strings.popup_convstart_title, MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                line1 = fconvert1.ReadLine();
-                while (line1 != null)
-                {
-                    if (worker.CancellationPending)
-                    {
-                        e.Cancel = true;
-                    }
-                    else if (line1.Length > 0) if (line1[0] != '#')
-                        {
-                            line11 = line1.Substring(line1.IndexOf("=")+1);
-                            line1 = line1.Substring(0, line1.IndexOf("="));
-                            loc1++;
-                            if (line11.IndexOf('&') != -1) { line11 = line11.Substring(0, line11.IndexOf('&')); line12 = line11.Substring(line11.IndexOf('&') + 1); line11 = line11 + "&amp;" + line12; }
-                            if (line11.IndexOf('<') != -1) { line11 = line11.Substring(0, line11.IndexOf('<')); line12 = line11.Substring(line11.IndexOf('&') + 1); line11 = line11 + "&lt;" + line12; }
-                            if (line11.IndexOf('>') != -1) { line11 = line11.Substring(0, line11.IndexOf('>')); line12 = line11.Substring(line11.IndexOf('&') + 1); line11 = line11 + "&gt;" + line12; }
-                            if (line11.IndexOf('\'') != -1) { line11 = line11.Substring(0, line11.IndexOf('\'')); line12 = line11.Substring(line11.IndexOf('&') + 1); line11 = line11 + "&apos;" + line12; }
-                            if (line11.IndexOf('"') != -1) { line11 = line11.Substring(0, line11.IndexOf('"')); line12 = line11.Substring(line11.IndexOf('&') + 1); line11 = line11 + "&quot;" + line12; }
-                            for (int i = 0; i < Convert.ToInt64(nodes.Count.ToString()); i++)
-                                if (nodes[i].Attributes["resname"].Value == line1){ 
-                                    loc2++;
-                                    if(tloc == 0)foreach(XmlNode nb in nodes[i])
-                                        {
-                                            if(nb.Name == "target")tloc = tms;
-                                            tms++;
-                                        }
-                                    transl = nodes[i].ChildNodes.Item(tloc);
-                                    if (transl != null) {
-                                        newTransl = transl;
-                                        newTransl.InnerXml = line11;
-                                        newTransl.Attributes["state"].Value = "translated";
-                                        nodes[i].ReplaceChild(transl, newTransl);
-                                    }
-                                    worker.ReportProgress(loc1);
-                                    break;
-                                }
-                        }
-                    line1 = fconvert1.ReadLine();
-                }
-                int tll = 0;
-                XmlNode Child0 = xliff.GetElementsByTagName("xliff")[0];
-                foreach (XmlNode a in Child0)
-                {
-                    if (a.Name == "file")
-                        break;
-                    tll++;
-                }
-                XmlNode Child1 = Child0.ChildNodes.Item(tll);
-                XmlNode Child2 = Child1;
-                tll = 0;
-                foreach (XmlNode a in Child1)
-                {
-                    if (a.Name == "body")
-                        break;
-                    tll++;
-                }
-                XmlNode Child3 = Child1.ChildNodes.Item(tll);
-                XmlNode Child4 = Child3;
-                for (int i = 0; i < Convert.ToInt64(nodes.Count.ToString()); i++)
-                {
-                    if (worker.CancellationPending)
-                    {
-                        e.Cancel = true;
-                    }
-                    else
-                    {
-                        Child3.ReplaceChild(nodes[i], nodes2[i]);
-                        worker.ReportProgress(i);
-                    }
-                }
-                Child1.ReplaceChild(Child3, Child4);
-                Child0.ReplaceChild(Child1, Child2);
-                xliff.ReplaceChild(Child0, xliff.GetElementsByTagName("xliff")[0]);
-                xliff.Save(saveloc);
-            }
-            return 0;
-        }
-
     }
 }

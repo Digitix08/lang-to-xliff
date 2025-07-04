@@ -1,0 +1,4 @@
+﻿#SelectedLang:en
+#To fill in supported langs besides English in form lang;lang_code
+Deutsch;de
+Română;ro

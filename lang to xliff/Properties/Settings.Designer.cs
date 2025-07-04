@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lang_to_xliff.Properties {
+namespace format_converter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

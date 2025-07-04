@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lang_to_xliff {
+namespace format_converter {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace lang_to_xliff {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("lang_to_xliff.strings", typeof(strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("format_converter.strings", typeof(strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -97,6 +97,15 @@ namespace lang_to_xliff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New file.
+        /// </summary>
+        internal static string main_file_new {
+            get {
+                return ResourceManager.GetString("main.file.new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open files.
         /// </summary>
         internal static string main_file_open {
@@ -120,6 +129,15 @@ namespace lang_to_xliff {
         internal static string main_label_nopath {
             get {
                 return ResourceManager.GetString("main.label.nopath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invert mode.
+        /// </summary>
+        internal static string main_mode_invert {
+            get {
+                return ResourceManager.GetString("main.mode.invert", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace lang_to_xliff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected file is NOT a XML file!{0}Please select a valid XML file and try again.
+        /// </summary>
+        internal static string popup_badxml_desc {
+            get {
+                return ResourceManager.GetString("popup.badxml.desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conversion completed.
         /// </summary>
         internal static string popup_convdone_desc {
@@ -250,7 +277,7 @@ namespace lang_to_xliff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation is running. Do you want to cancel it? Note: you will lose all unsaved progress.
+        ///   Looks up a localized string similar to Operation is running. Do you want to cancel it?{0}Note: you will lose all unsaved progress.
         /// </summary>
         internal static string popup_opruns_desc {
             get {
@@ -322,6 +349,15 @@ namespace lang_to_xliff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} matches found and converted.
+        /// </summary>
+        internal static string text_done {
+            get {
+                return ResourceManager.GetString("text.done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading file 1....
         /// </summary>
         internal static string text_load1 {
@@ -336,6 +372,15 @@ namespace lang_to_xliff {
         internal static string text_load2 {
             get {
                 return ResourceManager.GetString("text.load2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converting....
+        /// </summary>
+        internal static string text_noprogress {
+            get {
+                return ResourceManager.GetString("text.noprogress", resourceCulture);
             }
         }
         

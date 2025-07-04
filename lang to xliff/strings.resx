@@ -125,9 +125,14 @@
   </data>
   <data name="filter.lang.desc" xml:space="preserve">
     <value>Lang files (*.lang)</value>
+    <comment>do not translate .lang</comment>
   </data>
   <data name="filter.xliff.desc" xml:space="preserve">
     <value>Lang files (*.xliff)</value>
+    <comment>do not translate .xliff</comment>
+  </data>
+  <data name="main.file.new" xml:space="preserve">
+    <value>New file</value>
   </data>
   <data name="main.file.open" xml:space="preserve">
     <value>Open files</value>
@@ -137,6 +142,9 @@
   </data>
   <data name="main.label.nopath" xml:space="preserve">
     <value>No file selected</value>
+  </data>
+  <data name="main.mode.invert" xml:space="preserve">
+    <value>Invert mode</value>
   </data>
   <data name="main.output.label" xml:space="preserve">
     <value>Output:</value>
@@ -160,6 +168,11 @@
   </data>
   <data name="mode.lang.xliff" xml:space="preserve">
     <value>lang to xliff</value>
+    <comment>do not translate lang and xliff</comment>
+  </data>
+  <data name="popup.badxml.desc" xml:space="preserve">
+    <value>The selected file is NOT a XML file!{0}Please select a valid XML file and try again</value>
+    <comment>{0} = NewLine</comment>
   </data>
   <data name="popup.convdone.desc" xml:space="preserve">
     <value>Conversion completed</value>
@@ -184,7 +197,8 @@
     <value>No files selected. Select now?</value>
   </data>
   <data name="popup.opruns.desc" xml:space="preserve">
-    <value>Operation is running. Do you want to cancel it? Note: you will lose all unsaved progress</value>
+    <value>Operation is running. Do you want to cancel it?{0}Note: you will lose all unsaved progress</value>
+    <comment>{0} = NewLine</comment>
   </data>
   <data name="popup.opruns.title" xml:space="preserve">
     <value>Cancel operation?</value>
@@ -212,11 +226,19 @@
     <value>{0} has {1} strings of whom {2} translated and {3} untranslated</value>
     <comment>{0} = file name, {1} = translation count, {2} = strings translated, {3} = strings not translated</comment>
   </data>
+  <data name="text.done" xml:space="preserve">
+    <value>{0} matches found and converted</value>
+    <comment>{0} = number of transltion keys both in .lang and .xliff</comment>
+  </data>
   <data name="text.load1" xml:space="preserve">
     <value>Loading file 1...</value>
   </data>
   <data name="text.load2" xml:space="preserve">
     <value>Loading file 2...</value>
+  </data>
+  <data name="text.noprogress" xml:space="preserve">
+    <value>Converting...</value>
+    <comment>text when no progress has appeared yet</comment>
   </data>
   <data name="text.progress" xml:space="preserve">
     <value>{0} / {1}</value>

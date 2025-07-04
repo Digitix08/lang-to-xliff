@@ -122,16 +122,65 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="openFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>127, 22</value>
   </data>
   <data name="openFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>Open files</value>
+  </data>
+  <data name="langToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="langToolStripMenuItem.Text" xml:space="preserve">
+    <value>.lang</value>
+  </data>
+  <data name="xliffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="xliffToolStripMenuItem.Text" xml:space="preserve">
+    <value>.xliff</value>
+  </data>
+  <data name="newFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="newFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>New file</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="invertModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 22</value>
+  </data>
+  <data name="invertModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Invert mode</value>
+  </data>
+  <data name="breakLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 6</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="selectConversionModeToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="selectConversionModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 22</value>
+  </data>
+  <data name="selectConversionModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Select conversion mode...</value>
+  </data>
+  <data name="langToXliffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 22</value>
+  </data>
+  <data name="langToXliffToolStripMenuItem.Text" xml:space="preserve">
+    <value>lang to xliff</value>
+  </data>
+  <data name="xliffToLangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 22</value>
+  </data>
+  <data name="xliffToLangToolStripMenuItem.Text" xml:space="preserve">
+    <value>xliff to lang</value>
   </data>
   <data name="currentModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 20</value>
@@ -140,16 +189,10 @@
     <value>Current mode: lang to xliff</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="englishToolStripMenuItem.Text" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="românăToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="românăToolStripMenuItem.Text" xml:space="preserve">
-    <value>Română</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 20</value>
@@ -163,7 +206,6 @@
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 24</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -1694,23 +1736,59 @@
   <data name="&gt;&gt;openFilesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;newFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>newFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;newFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;langToolStripMenuItem.Name" xml:space="preserve">
+    <value>langToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;langToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xliffToolStripMenuItem.Name" xml:space="preserve">
+    <value>xliffToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;xliffToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;currentModeToolStripMenuItem.Name" xml:space="preserve">
     <value>currentModeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;currentModeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Name" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <data name="&gt;&gt;invertModeToolStripMenuItem.Name" xml:space="preserve">
+    <value>invertModeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;invertModeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripProgressBar1.Name" xml:space="preserve">
-    <value>toolStripProgressBar1</value>
+  <data name="&gt;&gt;breakLineToolStripMenuItem.Name" xml:space="preserve">
+    <value>breakLineToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripProgressBar1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;breakLineToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectConversionModeToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectConversionModeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectConversionModeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;langToXliffToolStripMenuItem.Name" xml:space="preserve">
+    <value>langToXliffToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;langToXliffToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xliffToLangToolStripMenuItem.Name" xml:space="preserve">
+    <value>xliffToLangToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;xliffToLangToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;languageToolStripMenuItem.Name" xml:space="preserve">
     <value>languageToolStripMenuItem</value>
@@ -1724,11 +1802,17 @@
   <data name="&gt;&gt;englishToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;românăToolStripMenuItem.Name" xml:space="preserve">
-    <value>românăToolStripMenuItem</value>
+  <data name="&gt;&gt;toolStripStatusLabel1.Name" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
   </data>
-  <data name="&gt;&gt;românăToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripStatusLabel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripProgressBar1.Name" xml:space="preserve">
+    <value>toolStripProgressBar1</value>
+  </data>
+  <data name="&gt;&gt;toolStripProgressBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

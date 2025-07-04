@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.36128.20
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lang to xliff", "lang to xliff\lang to xliff.csproj", "{5DE66BFD-111A-4487-A129-68BA44488185}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "format converter", "lang to xliff\format converter.csproj", "{5DE66BFD-111A-4487-A129-68BA44488185}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

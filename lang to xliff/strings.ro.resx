@@ -125,9 +125,14 @@
   </data>
   <data name="filter.lang.desc" xml:space="preserve">
     <value>Fișiere de limbă (*.lang)</value>
+    <comment>do not translate .lang</comment>
   </data>
   <data name="filter.xliff.desc" xml:space="preserve">
     <value>Fișiere de limbă (*.xliff)</value>
+    <comment>do not translate .xliff</comment>
+  </data>
+  <data name="main.file.new" xml:space="preserve">
+    <value>Fișier nou</value>
   </data>
   <data name="main.file.open" xml:space="preserve">
     <value>Deschide fișiere</value>
@@ -137,6 +142,9 @@
   </data>
   <data name="main.label.nopath" xml:space="preserve">
     <value>Niciun fișier selectat</value>
+  </data>
+  <data name="main.mode.invert" xml:space="preserve">
+    <value>Inversează modul</value>
   </data>
   <data name="main.output.label" xml:space="preserve">
     <value>Output:</value>
@@ -160,6 +168,11 @@
   </data>
   <data name="mode.lang.xliff" xml:space="preserve">
     <value>lang la xliff</value>
+    <comment>do not translate lang and xliff</comment>
+  </data>
+  <data name="popup.badxml.desc" xml:space="preserve">
+    <value>Fișierul selectat NU este un fișier XML vaid!{0}Vă rugăm să selectați un fișier XML valid și să încercați din nou.</value>
+    <comment>{0} = NewLine</comment>
   </data>
   <data name="popup.convdone.desc" xml:space="preserve">
     <value>Conversie completată</value>
@@ -184,7 +197,8 @@
     <value>Niciun fișier selectat. Le selectați acum?</value>
   </data>
   <data name="popup.opruns.desc" xml:space="preserve">
-    <value>Procesul rulează. Vrei să-l oprești? Notă: vei pierde tot progresul nesalvat</value>
+    <value>Procesul rulează. Vrei să-l oprești?{0}Notă: vei pierde tot progresul nesalvat</value>
+    <comment>{0} = NewLine</comment>
   </data>
   <data name="popup.opruns.title" xml:space="preserve">
     <value>Anulezi procesul?</value>
@@ -205,18 +219,26 @@
     <comment>{0} = file length (bytes)</comment>
   </data>
   <data name="text.desc.length2" xml:space="preserve">
-    <value>Lungime oututput: {0}</value>
+    <value>Lungime output: {0}</value>
     <comment>{0} = file length (bytes)</comment>
   </data>
   <data name="text.desc.xliff" xml:space="preserve">
     <value>{0} are {1} linii de tradus din care {2} traduse și {3} netraduse</value>
     <comment>{0} = file name, {1} = translation count, {2} = strings translated, {3} = strings not translated</comment>
   </data>
+  <data name="text.done" xml:space="preserve">
+    <value>{0} potriviri găsite și convertite</value>
+    <comment>{0} = number of transltion keys both in .lang and .xliff</comment>
+  </data>
   <data name="text.load1" xml:space="preserve">
     <value>Se încarcă fișierul 1...</value>
   </data>
   <data name="text.load2" xml:space="preserve">
     <value>Se încarcă fișierul 2...</value>
+  </data>
+  <data name="text.noprogress" xml:space="preserve">
+    <value>Se convertește...</value>
+    <comment>text when no progress has appeared yet</comment>
   </data>
   <data name="text.progress" xml:space="preserve">
     <value>{0} / {1}</value>
