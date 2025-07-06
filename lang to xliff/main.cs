@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace format_converter
 {
-    public partial class Form1 : Form
+    public partial class main : Form
     {
         string file1 = "", fpath1, fpath2, LangFile = "AvailableLangs.txt", SelLang = "en";
         int strcount1 = 0, strcount2 = 0, trcount2 = 0, utrcount2 = 0;
@@ -51,7 +51,7 @@ namespace format_converter
                 {
                     t = strings.ResourceManager.GetString((string)item.Tag);
                     if (t != null) if (t.Length > 0)
-                        item.Text = t;
+                        { item.Text = t; } //MessageBox.Show(strings.ResourceManager.GetString((string)item.Tag)); }
                 }
                 if (item.HasChildren) foreach (Control child in (item).Controls) Localize(child, null);
                 if (item.GetType() == typeof(MenuStrip)) foreach (ToolStripItem tool in ((MenuStrip)item).Items) Localize(null, tool);
@@ -70,10 +70,10 @@ namespace format_converter
 
         private void LoadLang()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(SelLang);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(SelLang);
             Localize(this, null);
-            /*toolStripStatusLabel1.Text = format_converter.strings.text_ready;
-            fileToolStripMenuItem.Text = format_converter.strings.main_toolbar_file;
+            toolStripStatusLabel1.Text = format_converter.strings.text_ready;
+            /*fileToolStripMenuItem.Text = format_converter.strings.main_toolbar_file;
             openFilesToolStripMenuItem.Text = format_converter.strings.main_file_open;*/
             currentModeToolStripMenuItem.Text = string.Format(format_converter.strings.main_toolbar_mode, format_converter.strings.mode_lang_xliff);
             //languageToolStripMenuItem.Text = format_converter.strings.main_toolbar_lang;
@@ -104,7 +104,7 @@ namespace format_converter
             }
         }
 
-        public Form1()
+        public main()
         {
             InitializeComponent();
             InitializeBackgroundWorker();
@@ -148,6 +148,13 @@ namespace format_converter
             if (LtX.Label4 != null) label4.Text = ((lang_to_xliff)sender).Label4;
             if (LtX.ValToSend != -1) toolStripProgressBar1.Value = LtX.ValToSend;
             toolStripProgressBar1.Style = LtX.StyleToSend;
+        }
+
+        private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 NewFile = new Form2();
+            if(NewFile.ShowDialog() == DialogResult.OK) MessageBox.Show("File created succesfully");
+            else MessageBox.Show("Failed to create file", format_converter.strings.popup_warn_title);
         }
 
         void backgroundWorker1_DoWork(object sender,
